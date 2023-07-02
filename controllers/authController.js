@@ -73,16 +73,24 @@ export const login=async(req,res)=>{
         }
 
         //create a JWT TOKEN
-        user.password=undefined;
-       
-        const token=await JWT.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'7d'});
-        user.token=token;
+      
+       const payload={
+        role:user.role,
+        id:user._id,
+       }
+        const token=await JWT.sign(payload,process.env.JWT_SECRET,{expiresIn:'7d'});
+        
         res.status(200).json({
             success:true,
             message:"Logged iN SUCCESSFULLY",
-            user,
+            user:{
+                name:user.name,
+                email:user.email,
+                phone:user.phone,
+                address:user.address,
+            },
             token,
-            })
+            });
     }
     
     catch(err){
@@ -94,4 +102,7 @@ export const login=async(req,res)=>{
         });
     
 }
+}
+export const testController=async(req,res)=>{
+    res.send("Protected Routes");
 }
