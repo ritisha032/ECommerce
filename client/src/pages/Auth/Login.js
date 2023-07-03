@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const Login = () => {
   const [auth,setAuth]=useAuth();
 
   const navigate = useNavigate();
-
+  const location=useLocation();
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +32,8 @@ const Login = () => {
 
         });
         localStorage.setItem('auth',JSON.stringify(res.data));
-        navigate("/");
+        //login se pehle wale url pe redirect karo warna homepage par
+        navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
       }
