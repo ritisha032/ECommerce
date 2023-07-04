@@ -14,5 +14,12 @@ router.get("/user-auth",requireSignIn,(req,res)=>{
     res.status(200).send({ok:true});
 });
 
+//protected route for admin
+
+//protected routes
+router.get("/admin-auth",requireSignIn,isAdmin,(req,res)=>{
+    res.status(200).send({ok:true});
+});
+
 
 export default router;

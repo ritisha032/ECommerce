@@ -3,8 +3,10 @@ import User from "../models/User.js";
 export const requireSignIn=async(req,res,next)=>{
     try{
 
-        const token=req.header("Authorization").replace("Bearer ","");
-        const decode=await JWT.verify(token,process.env.JWT_SECRET);
+        const decode = JWT.verify(
+            req.headers.authorization,
+            process.env.JWT_SECRET
+          );
         req.user=decode;
         next();
 
@@ -16,7 +18,7 @@ export const requireSignIn=async(req,res,next)=>{
 export const isAdmin=async(req,res,next)=>{
     try{
        
-      
+        const user = await User.findById(req.user._id);
         if(req.user.role !== 1)
         {
            return res.status(400).json({

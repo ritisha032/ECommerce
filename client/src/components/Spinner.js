@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-const Spinner = () => {
+const Spinner = ({path="login"}) => {
 
   //timer of 5s before redirecting to login page
   const [count, setCount] = useState(5);
@@ -13,11 +13,11 @@ const Spinner = () => {
     }, 1000);
     //when count=0 redirect to login page
     count === 0 &&
-      navigate("/login", {
+      navigate(`/${path}`, {
         state: location.pathname,
       });
     return () => clearInterval(interval);
-  }, [count, navigate, location]);
+  }, [count, navigate, location,path]);
 
   //location and state:location.pathname are used to redirect to the page user wanted to before logging in
   return (
