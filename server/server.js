@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 const app=express();
 
@@ -25,6 +26,7 @@ const PORT=process.env.PORT || 5000;
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api/v1",authRoutes);
 app.use("/api/v1/category",categoryRoutes);
+app.use("/api/v1/product", productRoutes);
 
 
 app.listen(PORT,()=>{
