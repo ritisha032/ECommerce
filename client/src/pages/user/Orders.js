@@ -11,7 +11,7 @@ const Orders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/orders`);
-      console.log(data);
+     // console.log(data);
       setOrders(data);
     } catch (error) {
       console.log(error);
