@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "../../styles/AuthStyles.css";
 const Register = () => {
   const [name, setName] = useState("");
@@ -28,10 +28,10 @@ const Register = () => {
         toast.success(res.data && res.data.message);
         navigate("/login");
       } else {
-        toast.error(res.data.message);
+        toast.warning(res.data.message);
       }
     } catch (erorr) {
-      toast.error("Something Went Wrong");
+      toast.warning("Something Went Wrong");
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
@@ -51,7 +51,7 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.warning("Something wwent wrong in getting catgeory");
     }
   };
 
@@ -75,14 +75,14 @@ const UpdateProduct = () => {
         productData
       );
       if (data?.success) {
-        toast.error(data?.message);
+        toast.warning(data?.message);
       } else {
         toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.warning("something went wrong");
     }
   };
 
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
       navigate("/dashboard/admin/products");
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.warning("Something went wrong");
     }
   };
   return (
@@ -153,7 +153,7 @@ const UpdateProduct = () => {
                 ) : (
                   <div className="text-center">
                     <img
-                      src={`/api/v1/product/product-photo/${id}`}
+                      src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"

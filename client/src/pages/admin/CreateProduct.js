@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import { useState, useEffect } from "react";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { Select } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const CreateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.warning("Something went wrong in getting catgeory");
     }
   };
 
@@ -61,11 +61,11 @@ const CreateProduct = () => {
         toast.success("Product Created Successfully");
         navigate("/dashboard/admin/products");
       } else {
-        toast.error(data.message);
+        toast.warning(data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.warning("something went wrong");
     }
   };
 

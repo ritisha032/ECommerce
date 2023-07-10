@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import { useEffect, useState } from "react";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import {Modal} from "antd";
@@ -24,7 +24,7 @@ const CreateCategory = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.warning("Something went wrong in getting catgeory");
     }
   };
   useEffect(() => {
@@ -40,11 +40,11 @@ const CreateCategory = () => {
         toast.success(`${name} is created`);
         getAllCategory();
       } else {
-        toast.error(data.message);
+        toast.warning(data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("somthing went wrong in input form");
+      toast.warning("somthing went wrong in input form");
     }
   };
   const handleUpdate = async (e) => {
@@ -61,10 +61,10 @@ const CreateCategory = () => {
         setVisible(false);
         getAllCategory();
       } else {
-        toast.error(data.message);
+        toast.warning(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.warning("Somtihing went wrong");
     }
   };
   const handleDelete = async (pId) => {
@@ -77,10 +77,10 @@ const CreateCategory = () => {
 
         getAllCategory();
       } else {
-        toast.error(data.message);
+        toast.warning(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.warning("Somtihing went wrong");
     }
   };
   return (

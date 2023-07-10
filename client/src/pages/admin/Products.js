@@ -2,7 +2,7 @@ import React from "react";
 import AdminMenu from "../../components/Layout/AdminMenu.js";
 import Layout from "../../components/Layout/Layout.js";
 import { useState,useEffect } from "react";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 import {Link} from "react-router-dom";
 const Products = () => {
@@ -15,7 +15,7 @@ const Products = () => {
       setProducts(data.products);
     } catch (error) {
       console.log(error);
-      toast.error("Something Went Wrong");
+      toast.warning("Something Went Wrong");
     }
   };
 

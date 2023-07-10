@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "../../styles/AuthStyles.css";
 
 const ForgotPasssword = () => {
@@ -26,11 +26,11 @@ const ForgotPasssword = () => {
 
         navigate("/login");
       } else {
-        toast.error(res.data.message);
+        toast.warning(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.warning("Something went wrong");
     }
   };
   return (

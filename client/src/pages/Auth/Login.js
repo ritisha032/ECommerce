@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 import { useLocation } from "react-router-dom";
@@ -35,11 +35,11 @@ const Login = () => {
         //login se pehle wale url pe redirect karo warna homepage par
         navigate(location.state || "/");
       } else {
-        toast.error(res.data.message);
+        toast.warning(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.warning("Something went wrong");
     }
   };
   return (
