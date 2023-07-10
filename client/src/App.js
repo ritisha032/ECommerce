@@ -25,19 +25,23 @@ import ProductDetails from "./pages/ProductDetails";
 import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/categoryProduct";
 import CartPage from "./pages/CartPage";
+
 function App() {
   return (
     <>
       <Routes>
       
         <Route path="/" element={<Home />}></Route>
+
+      
+
         <Route path="/product/:slug" element={<ProductDetails />}></Route>
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path="/categories" element={<Categories />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
 
 
-        <Route path="/signup" element={<Register />}></Route>
+        <Route path="/register" element={<Register />}></Route>
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />

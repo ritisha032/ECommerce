@@ -6,7 +6,7 @@ import {
   getSingleProductController,
   productFiltersController,
   productPhotoController,
-  updateProductController,productCountController,productListController, searchProductController, realtedProductController, productCategoryController,
+  updateProductController,productCountController,productListController, searchProductController, realtedProductController, productCategoryController, brainTreeTokenController, brainTreePaymentController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 import formidable from "express-formidable";
@@ -61,6 +61,12 @@ router.get("/related-product/:pid/:cid", realtedProductController);
 
 //category wise product
 router.get("/product-category/:slug", productCategoryController);
+
+//payment routes
+
+router.get('/braintree/token',brainTreeTokenController);
+
+router.post("/braintree/payment",requireSignIn,brainTreePaymentController);
 
 
 export default router;

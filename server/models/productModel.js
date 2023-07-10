@@ -28,7 +28,6 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     photo: {
-        //image ya file ko save karane ke liye
       data: Buffer,
       contentType: String,
     },

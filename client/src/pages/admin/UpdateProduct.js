@@ -51,7 +51,7 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.warning("Something wwent wrong in getting catgeory");
+      toast.warning("Something went wrong in getting catgeory");
     }
   };
 
