@@ -5,32 +5,39 @@ import morgan from "morgan";
 import cors from "cors";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import dbConnect from "./config/database.js";
 
-const app=express();
+//instantiating express server
+const app = express();
 
+
+
+//to use variables inside .env files
 dotenv.config();
 
 //middleware
 app.use(cors());
 app.use(morgan("dev"));
+
+//body parser
 app.use(express.json());
 
-app.get('/',(req,res)=>{
-    res.send(`<h1>Welcome to ECommerce App</h1>`);
-})
+//home page
+app.get("/", (req, res) => {
+  res.send(`<h1>Welcome to ECommerce App</h1>`);
+});
 
-const PORT=process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 
-
-import authRoutes from "./routes/authRoutes.js";
-app.use("/api/v1",authRoutes);
-app.use("/api/v1/category",categoryRoutes);
+//mounting routes
+app.use("/api/v1", authRoutes);
+app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
+app.listen(PORT, () => {
+  console.log(`SERVER RUNNING ON ${PORT}`.bgCyan.white);
+});
 
-app.listen(PORT,()=>{
-    console.log(`SERVER RUNNING ON ${PORT}`.bgCyan.white);
-})
-import dbConnect from "./config/database.js";
 dbConnect();

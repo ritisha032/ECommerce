@@ -74,6 +74,7 @@ export const login = async (req, res) => {
     }
 
     //create a JWT TOKEN
+    //payload is data to be sent inside JWT Token
 
     const payload = {
       role: user.role,
