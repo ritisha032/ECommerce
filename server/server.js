@@ -7,6 +7,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import dbConnect from "./config/database.js";
+import path from "path";
 
 //instantiating express server
 const app = express();
@@ -23,9 +24,11 @@ app.use(morgan("dev"));
 //body parser
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname),'../client/build'));
+
 //home page
-app.get("/", (req, res) => {
-  res.send(`<h1>Welcome to ECommerce App</h1>`);
+app.use("*",function(req,res){
+    res.sendFile(path.join(__dirname,'../client/build/index.html'))
 });
 
 const PORT = process.env.PORT || 5000;
