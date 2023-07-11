@@ -64,7 +64,7 @@ const CreateCategory = () => {
         toast.warning(data.message);
       }
     } catch (error) {
-      toast.warning("Somtihing went wrong");
+      toast.warning("Somthing went wrong");
     }
   };
   const handleDelete = async (pId) => {
@@ -73,7 +73,7 @@ const CreateCategory = () => {
         `${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`
       );
       if (data.success) {
-        toast.success(`category is deleted`);
+        toast.warning(`category is deleted`);
 
         getAllCategory();
       } else {

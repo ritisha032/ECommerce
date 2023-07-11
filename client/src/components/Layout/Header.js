@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
-import {Badge} from 'antd'
+import { Badge } from "antd";
 const Header = () => {
   const [auth, setAuth] = useAuth();
-  const [cart,setCart]=useCart();
+  const [cart, setCart] = useCart();
   const categories = useCategory();
   const handleLogout = () => {
     setAuth({
@@ -16,6 +16,7 @@ const Header = () => {
       user: null,
       token: "",
     });
+    setCart([]);
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
   };

@@ -25,21 +25,18 @@ import ProductDetails from "./pages/ProductDetails";
 import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/categoryProduct";
 import CartPage from "./pages/CartPage";
+import AdminOrders from "./pages/admin/AdminOrders";
 
 function App() {
   return (
     <>
       <Routes>
-      
         <Route path="/" element={<Home />}></Route>
-
-      
 
         <Route path="/product/:slug" element={<ProductDetails />}></Route>
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path="/categories" element={<Categories />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
-
 
         <Route path="/register" element={<Register />}></Route>
 
@@ -59,9 +56,9 @@ function App() {
             path="admin/create-product"
             element={<CreateProduct />}
           ></Route>
-           <Route path="admin/product/:slug" element={<UpdateProduct />} />
+          <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/products" element={<Products />} />
-          <Route path="admin/users" element={<Users />}></Route>
+          <Route path="admin/orders" element={<AdminOrders />} />
         </Route>
 
         <Route path="/search" element={<Search />} />

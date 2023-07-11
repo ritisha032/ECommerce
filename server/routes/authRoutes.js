@@ -1,7 +1,7 @@
 import express from "express";
 const router=express.Router();
 
-import {signup,login,forgotPasswordController, updateProfileController, getOrdersController, getUserById} from "../controllers/authController.js";
+import {signup,login,forgotPasswordController, updateProfileController, getOrdersController, getUserById, getAllOrdersController, orderStatusController} from "../controllers/authController.js";
 import { requireSignIn,isAdmin} from "../middleware/authMiddleware.js";
 
 
@@ -29,6 +29,17 @@ router.put("/profile", requireSignIn, updateProfileController);
 //orders
 
 router.get('/orders',requireSignIn,getOrdersController);
+
+//all orders
+router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
+
+// order status update
+router.put(
+  "/order-status/:orderId",
+  requireSignIn,
+  isAdmin,
+  orderStatusController
+);
 
 
 export default router;

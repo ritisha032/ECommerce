@@ -63,14 +63,13 @@ const Orders = () => {
                             src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            width="100px"
-                            height={"100px"}
+                           
                           />
                         </div>
                         <div className="col-md-8">
                           <p>{p.name}</p>
                           <p>{p.description.substring(0, 30)}</p>
-                          <p>Price : {p.price}</p>
+                          <p>Price : ₹{p.price}</p>
                         </div>
                       </div>
                     ))}
