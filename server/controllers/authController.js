@@ -138,7 +138,6 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-
 export const updateProfileController = async (req, res) => {
   try {
     const { name, email, password, address, phone } = req.body;
@@ -180,14 +179,39 @@ export const getOrdersController = async (req, res) => {
     const orders = await orderModel
       .find({ buyer: req.user._id })
       .populate("products", "-photo")
-      .populate("buyer","name");
-      res.json(orders);
+      .populate("buyer", "name");
+    res.json(orders);
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      success:false,
-      message:"Error while retrieving orders",
-      error
+      success: false,
+      message: "Error while retrieving orders",
+      error,
+    });
+  }
+};
+
+// GET user by ID
+export const getUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    console.log(userId);
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
     });
   }
 };

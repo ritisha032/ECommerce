@@ -1,7 +1,7 @@
 import express from "express";
 const router=express.Router();
 
-import {signup,login,forgotPasswordController, updateProfileController, getOrdersController} from "../controllers/authController.js";
+import {signup,login,forgotPasswordController, updateProfileController, getOrdersController, getUserById} from "../controllers/authController.js";
 import { requireSignIn,isAdmin} from "../middleware/authMiddleware.js";
 
 
@@ -13,6 +13,8 @@ router.post("/forgot-password",forgotPasswordController);
 router.get("/user-auth",requireSignIn,(req,res)=>{
     res.status(200).send({ok:true});
 });
+
+router.get('/user/:id',getUserById)
 
 //protected route for admin
 

@@ -16,41 +16,21 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
-  //get user data
-  useEffect(() => {
-    const { email, name, phone, address } = auth?.user;
-    setName(name);
-    setPhone(phone);
-    setEmail(email);
-    setAddress(address);
-  }, [auth?.user]);
 
+//get user data
+useEffect(() => {
+  const { email, name, phone, address } = auth?.user;
+  setName(name);
+  setPhone(phone);
+  setEmail(email);
+  setAddress(address);
+}, [auth?.user]);
+  
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const profileData=new FormData();
-      profileData.append("name",name);
-      profileData.append("email",email);
-      profileData.append("phone",phone);
-      profileData.append("password",password);
-      profileData.append("address",address);
-      const {data}=axios.put(`${process.env.REACT_APP_API}/api/v1/profile`,profileData);
-      if (data?.success) {
-        toast.warning(data?.message);
-      } else {
-        setAuth({ ...auth, user: data?.updatedUser });
-        let ls = localStorage.getItem("auth");
-        ls = JSON.parse(ls);
-        ls.user = data.updatedUser;
-        localStorage.setItem("auth", JSON.stringify(ls));
-        toast.success("Profile Updated Successfully");
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.warning("Something went wrong");
-    }
+    
+    navigate("/");
   };
   return (
     <Layout title={"Your Profile"}>
@@ -71,7 +51,7 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter Your Name"
-                    autoFocus
+                    autoFocus disabled
                   />
                 </div>
                 <div className="mb-3">
@@ -82,19 +62,10 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter Your Email "
-                    
+                    disabled
                   />
                 </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Enter Your Password"
-                  />
-                </div>
+                
                 <div className="mb-3">
                   <input
                     type="text"
@@ -102,7 +73,7 @@ const Profile = () => {
                     onChange={(e) => setPhone(e.target.value)}
                     className="form-control"
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Phone"
+                    placeholder="Enter Your Phone" disabled
                   />
                 </div>
                 <div className="mb-3">
@@ -112,12 +83,12 @@ const Profile = () => {
                     onChange={(e) => setAddress(e.target.value)}
                     className="form-control"
                     id="exampleInputEmail1"
-                    placeholder="Enter Your Address"
+                    placeholder="Enter Your Address" disabled
                   />
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                  UPDATE
+                  HOME
                 </button>
               </form>
             </div>
